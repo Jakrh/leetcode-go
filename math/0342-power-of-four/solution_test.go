@@ -4,41 +4,52 @@ import (
 	"testing"
 )
 
-func TestIsPowerOfFour(t *testing.T) {
-	type args struct {
-		n int
-	}
+type args struct {
+	n int
+}
 
-	tests := []struct {
-		name string
-		args args
-		want bool
-	}{
-		{
-			name: "1",
-			args: args{
-				n: 16,
-			},
-			want: true,
+var tests = []struct {
+	name string
+	args args
+	want bool
+}{
+	{
+		name: "1",
+		args: args{
+			n: 16,
 		},
-		{
-			name: "2",
-			args: args{
-				n: 5,
-			},
-			want: false,
+		want: true,
+	},
+	{
+		name: "2",
+		args: args{
+			n: 5,
 		},
-		{
-			name: "3",
-			args: args{
-				n: 1,
-			},
-			want: true,
+		want: false,
+	},
+	{
+		name: "3",
+		args: args{
+			n: 1,
 		},
-	}
+		want: true,
+	},
+}
+
+func TestIsPowerOfFour1(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := isPowerOfFour(tt.args.n); got != tt.want {
+			if got := isPowerOfFour1(tt.args.n); tt.want != got {
+				t.Errorf("func(%v) = %v, want %v", tt.args.n, got, tt.want)
+			}
+		})
+	}
+}
+
+func TestIsPowerOfFour2(t *testing.T) {
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := isPowerOfFour1(tt.args.n); tt.want != got {
 				t.Errorf("func(%v) = %v, want %v", tt.args.n, got, tt.want)
 			}
 		})
