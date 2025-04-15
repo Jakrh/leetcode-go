@@ -31,6 +31,12 @@ func adjList2Graph(adjList [][]int) *Node {
 }
 
 func graphsEqual(t *testing.T, original, cloned *Node) bool {
+	if original == nil && cloned == nil {
+		return true
+	} else if (original == nil && cloned != nil) || (original != nil && cloned == nil) {
+		return false
+	}
+
 	logEnabled := false
 	oriNodes := map[int]*Node{}
 	clonedNodes := map[int]*Node{}
