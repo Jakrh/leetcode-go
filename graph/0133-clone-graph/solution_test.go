@@ -5,20 +5,20 @@ import (
 )
 
 func BenchmarkTestCloneGraph(b *testing.B) {
-	firstNode := adjList2Graph([][]int{{2, 4}, {1, 3}, {2, 4}, {1, 3}})
+	firstNode := edges2Graph([][]int{{2, 4}, {1, 3}, {2, 4}, {1, 3}})
 	for i := 0; i < b.N; i++ {
 		cloneGraph2(firstNode)
 	}
 }
 
-func adjList2Graph(adjList [][]int) *Node {
-	nodes := make([]*Node, len(adjList))
-	for i := range adjList {
+func edges2Graph(edges [][]int) *Node {
+	nodes := make([]*Node, len(edges))
+	for i := range edges {
 		nodes[i] = &Node{
 			Val: i + 1,
 		}
 	}
-	for i, neighbors := range adjList {
+	for i, neighbors := range edges {
 		for _, neighbor := range neighbors {
 			nodes[i].Neighbors = append(nodes[i].Neighbors, nodes[neighbor-1])
 		}
@@ -129,7 +129,7 @@ var tests = []struct {
 func TestCloneGraph1(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			firstNode := adjList2Graph(tt.args)
+			firstNode := edges2Graph(tt.args)
 			if got := cloneGraph1(firstNode); !graphsEqual(t, firstNode, got) {
 				t.Errorf("cloneGraph() = %v, want %v", got, tt.want)
 			}
@@ -140,7 +140,7 @@ func TestCloneGraph1(t *testing.T) {
 func TestCloneGraph2(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			firstNode := adjList2Graph(tt.args)
+			firstNode := edges2Graph(tt.args)
 			if got := cloneGraph2(firstNode); !graphsEqual(t, firstNode, got) {
 				t.Errorf("cloneGraph() = %v, want %v", got, tt.want)
 			}

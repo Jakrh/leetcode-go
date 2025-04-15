@@ -7,14 +7,14 @@ type Node struct {
 	Neighbors []*Node
 }
 
-func adjList2Graph(adjList [][]int) *Node {
-	nodes := make([]*Node, len(adjList))
-	for i := range adjList {
+func edges2Graph(edges [][]int) *Node {
+	nodes := make([]*Node, len(edges))
+	for i := range edges {
 		nodes[i] = &Node{
 			Val: i + 1,
 		}
 	}
-	for i, neighbors := range adjList {
+	for i, neighbors := range edges {
 		for _, neighbor := range neighbors {
 			nodes[i].Neighbors = append(nodes[i].Neighbors, nodes[neighbor-1])
 		}
