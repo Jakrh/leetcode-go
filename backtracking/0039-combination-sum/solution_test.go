@@ -39,6 +39,14 @@ func TestCombinationSum(t *testing.T) {
 			},
 			want: [][]int{},
 		},
+		{
+			name: "4",
+			args: args{
+				candidates: []int{7, 3, 2},
+				target:     18,
+			},
+			want: [][]int{{7, 7, 2, 2}, {7, 3, 3, 3, 2}, {7, 3, 2, 2, 2, 2}, {3, 3, 3, 3, 3, 3}, {3, 3, 3, 3, 2, 2, 2}, {3, 3, 2, 2, 2, 2, 2, 2}, {2, 2, 2, 2, 2, 2, 2, 2, 2}},
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
